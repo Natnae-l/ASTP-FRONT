@@ -9,17 +9,8 @@ export const song =[
 
 export const statics = {
     "totalNumberOfSong":7,
-    "numberOfSongAndAlbumInArtist": [
-        {"artist":"Bsx","song":3,"album":1},
-        {"artist":"art","song":3,"album":3},
-        {"artist":"artr","song":1,"album":1}
-    ],
-    "numberOfSongInEveryGenre":[{"spritual song":7}],
-    "totalNumberOfArtist":3,
-    "numOfAlbums":5,
-    "numOfSongInAlbum":[
-        {"eferfrf":1},
-        {"eferfrf":3},
-        {"eferfre":1}
-    ]
-}
+    "numberOfSongAndAlbumInArtist":[{"artist":"&lt;a&gt;#@#@#&lt;&#x2F;a&gt;","song":3,"album":1},{"artist":"art","song":3,"album":3},{"artist":"artr","song":1,"album":1}],
+    "numberOfSongInEveryGenre":[{"song":7,"genre":"spritual song"}],
+    "totalNumberOfArtist":3,"numOfAlbums":5,
+    "numOfSongInAlbum":[{"album":"eferfrf","song":1},
+    {"album":"eferfrf","song":3},{"album":"eferfre","song":1}]}
