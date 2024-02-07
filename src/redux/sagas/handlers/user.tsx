@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
 import { setUser } from "../../ducks/songSlice";
-import { requestGetUser, requestdeleteSong, requestAddSong } from "../requests/user";
+import { requestGetUser, requestdeleteSong, requestAddSong, requestUpdateSong } from "../requests/user";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 export function* handleGetSong(action: PayloadAction<object>): any {
@@ -35,6 +35,22 @@ export function* handleDeleteSong(action: PayloadAction<{id: string}>): any {
         const res: any = yield call(requestGetUser);
         // const { data } = res;
         console.log(res)
+        return yield put(setUser({ ...res}));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  export function* handleUpdateSong(action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string}>): any {
+    try {
+        const response: any = yield call(requestUpdateSong, action.payload); 
+        console.log(response);
+        
+             
+        const res: any = yield call(requestGetUser);
+
+        // const { data } = res;
+        // console.log(res)
         return yield put(setUser({ ...res}));
     } catch (error) {
       console.log(error);

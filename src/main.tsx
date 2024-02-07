@@ -8,13 +8,15 @@ import Statistics from './components/statistics/Statistics.tsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
+import UpdateSong from './components/home/UpdateSong.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
       <Route path='' element={<Song/>}/>
+      <Route path='update/song' element={<UpdateSong/>}/>
       <Route path='addsong' element={<AddSong/>}/>
-      <Route path='statistics' element={<Statistics/>}/>
+      <Route path='statistics' element={<Statistics/>}/>  
       <Route path='*' element={<div>Not Found</div>} />
     </Route>
   )

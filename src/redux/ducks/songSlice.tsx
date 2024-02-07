@@ -8,6 +8,7 @@ const userSlice = createSlice({
     getUser() {},
     deleteSong(state, action: PayloadAction<{id: string}>){},
     addSong(state, action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string}>){},
+    updateSong(state, action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string}>){},
     setUser(state, action: PayloadAction<object>) {
       const userData = action.payload;
       // state = userData;
@@ -16,6 +17,6 @@ const userSlice = createSlice({
   }
 });
 
-export const { getUser, setUser, deleteSong, addSong } = userSlice.actions;
+export const { getUser, setUser, deleteSong, addSong, updateSong } = userSlice.actions;
 
 export default userSlice.reducer;

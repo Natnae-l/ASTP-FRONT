@@ -2,7 +2,8 @@ import { css } from "@emotion/react"
 import deleter from "../../assets/delete.png"
 import edit from "../../assets/editing.png"
 import { useDispatch } from "react-redux"
-import { deleteSong, getUser } from "../../redux/ducks/songSlice"
+import { deleteSong} from "../../redux/ducks/songSlice"
+import { Link } from "react-router-dom"
 
 const style = css({
     backgroundColor: 'rgb(66, 66, 66)',
@@ -21,10 +22,15 @@ interface Prop {
     Genre: string;
     Artist: string
   }
+type states = {
+    id : string;
+}
 
 export default function EachSong(props: Prop){
     const Dispatch = useDispatch();
-
+    const state: states = {
+        id: props.id
+    }
 
     return (
         <section css={style}>
@@ -41,7 +47,12 @@ export default function EachSong(props: Prop){
                     Dispatch(deleteSong({id: id}))
                     //  console.log(id)
                     }} title="delete"/>
-                <img src={edit} alt="" title="edit"  id={props.id}/>
+                <Link 
+                    to= '/update/song' 
+                    state= {{id: props.id}}
+                    >
+                    <img src={edit} alt="" title="edit"  id={props.id}/> 
+                </Link>
             </div>
             
         </section>

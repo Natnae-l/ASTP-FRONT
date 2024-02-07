@@ -53,7 +53,7 @@ export function requestdeleteSong(id: string) {
   }
 
 interface addSong {
-  Title: string, Album: string, Genre: string, Artist: String
+  Title: string, Album: string, Genre: string, Artist: String, id: string
 }
 export async function requestAddSong(data: addSong) {
   try {
@@ -66,6 +66,21 @@ export async function requestAddSong(data: addSong) {
   } catch (error) {
     console.log(error); 
   }
- 
+}
+export async function requestUpdateSong(data: addSong) {
+  try {
+    console.log(data); 
+    let res = await fetch(`http://localhost:3001/song?id=${data.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    res = await res.json()
+    return res
+    } catch (error) {
+      console.log(error); 
+    }
 }
 
