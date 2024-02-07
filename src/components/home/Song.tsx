@@ -1,6 +1,9 @@
 import { css } from "@emotion/react"
 import EachSong from "./EachSong"
 import * as data from '../../data'
+import { useDispatch, useSelector } from "react-redux";
+import { getUser} from "../../redux/ducks/songSlice";
+import { useEffect } from "react";
 
 const style = css({
     display:'flex', alignItems: 'center', gap:'20px', flexWrap: 'wrap', width: '100% !important', overflowY:'scroll'
@@ -15,8 +18,21 @@ const values = data.song.map(item => (
         Genre={item.Genre}
     />
 ))
-
+interface user {
+    user: []
+}
 export default function Song(){
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getUser())
+    }, [])
+    const user = useSelector((state: user) => {
+        console.log(state);
+        
+        return state.user
+    })
+
+    // console.log(user)
     return (
         <div css={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingInline:'1rem', width:'84%'}}>
             <h1 css={{fontFamily:'poppins'}}>Your songs</h1>
