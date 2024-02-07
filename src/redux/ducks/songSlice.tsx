@@ -5,16 +5,15 @@ const userSlice = createSlice({
   name: "user",
   initialState: {},
   reducers: {
-    getUser(state) {
-      return state
-    },
+    getUser() {},
+    deleteSong(){},
     setUser(state, action: PayloadAction<object>) {
       const userData = action.payload;
-      return { ...state, ...userData };
+      return {...state, ...userData };
     }
   }
 });
 
-export const { getUser, setUser } = userSlice.actions;
+export const { getUser, setUser, deleteSong } = userSlice.actions;
 
 export default userSlice.reducer;

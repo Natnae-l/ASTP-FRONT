@@ -1,6 +1,8 @@
 import { css } from "@emotion/react"
 import deleter from "../../assets/delete.png"
 import edit from "../../assets/editing.png"
+// import { useDispatch } from "react-redux"
+// import { deleteSong } from "../../redux/ducks/songSlice"
 
 const style = css({
     backgroundColor: 'rgb(66, 66, 66)',
@@ -20,8 +22,10 @@ interface Prop {
     Artist: string
   }
 
-
 export default function EachSong(props: Prop){
+    // const Dispatch = useDispatch();
+
+
     return (
         <section css={style}>
             <h3>{props.Title}</h3>
@@ -31,7 +35,10 @@ export default function EachSong(props: Prop){
                 <p>{props.Genre}</p>  
             </div>
             <div css={{display: 'flex', justifyContent: 'space-between'}}>
-                <img src={deleter} alt="" id={props.id} title="delete"/>
+                <img src={deleter} alt="" id={props.id} 
+                onClick={(event: React.MouseEvent<HTMLElement>) => {
+                     console.log(((event.target as any).id))
+                    }} title="delete"/>
                 <img src={edit} alt="" title="edit"  id={props.id}/>
             </div>
             
