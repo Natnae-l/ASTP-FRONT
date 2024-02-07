@@ -1,4 +1,5 @@
 import axios from "axios";
+import { addSong } from "../../ducks/songSlice";
 
 export async function requestGetUser() {
 
@@ -50,3 +51,21 @@ export function requestdeleteSong(id: string) {
       params: {id: id},
       url: "http://localhost:3001/song"})    
   }
+
+interface addSong {
+  Title: string, Album: string, Genre: string, Artist: String
+}
+export async function requestAddSong(data: addSong) {
+  try {
+    console.log(data); 
+    return await axios.post('http://localhost:3001/song', {...data}, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+  }) 
+  } catch (error) {
+    console.log(error); 
+  }
+ 
+}
+

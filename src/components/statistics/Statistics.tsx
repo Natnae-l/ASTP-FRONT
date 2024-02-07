@@ -1,7 +1,9 @@
 import { css } from "@emotion/react"
 import Artist from "./statComponents/Artist"
-import * as data from '../../data'
 import AlbumStat from "./statComponents/SongInAlbum"
+import { useSelector, useDispatch } from "react-redux"
+import { getUser } from "../../redux/ducks/songSlice"
+import { useEffect } from "react"
 
 const style = css({
     paddingInline: '1rem', fontFamily:'Poppins, sanserif', width: '80%', overflowY: 'scroll'
@@ -16,30 +18,77 @@ const genreStyle = css({
     display: 'grid', gridTemplateColumns: '1fr 1fr', width: '40%',
 })
 
+type stat = {
+    totalNumberOfSong: number
+    numberOfSongAndAlbumInArtist: [
+        {
+            artist: string
+            song: number
+            album: number
+        }
+    ]
+    numberOfSongInEveryGenre: [{
+        song: number
+        genre: string
+    }]
+    totalNumberOfArtist: number
+    numOfAlbums: number
+    numOfSongInAlbum: [
+        {
+            album: string
+            song: number
+        }
+    ]
+}
+interface user {
+    user: {
+        song: [{
+            Title: string,
+            _id: string,
+            Album: string,
+            Genre: string,
+            Artist: string
+        }]
+        statistics: stat
+    }
+}
 
-const artistData = data.statics.numberOfSongAndAlbumInArtist.map(data => {
-    return <Artist
-                artist={data.artist}
-                song={data.song}
-                album={data.album}
-                style={liStyle}
-            />
-})
-
-const albumData = data.statics.numOfSongInAlbum.map(data => {
-    return <AlbumStat 
-                song={data.song}
-                album={data.album}
-            />
-})
-const genreData = data.statics.numberOfSongInEveryGenre.map(data => {
-    return <AlbumStat 
-                song={data.song}
-                album={data.genre}
-            />
-})
 
 export default function Statistics(){
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getUser())
+    }, [])
+    const statstics: stat = useSelector((state: user) => {
+        return state.user.statistics
+    })
+    console.log(statstics);
+
+    let artistData, genreData, albumData;
+    if (statstics){
+     artistData = statstics.numberOfSongAndAlbumInArtist.map(data => {
+        return <Artist
+                    artist={data.artist}
+                    song={data.song}
+                    album={data.album}
+                    style={liStyle}
+                />
+    })
+    
+     albumData = statstics.numOfSongInAlbum.map(data => {
+        return <AlbumStat 
+                    song={data.song}
+                    album={data.album}
+                />
+    })
+    genreData = statstics.numberOfSongInEveryGenre.map(data => {
+        return <AlbumStat 
+                    song={data.song}
+                    album={data.genre}
+                />
+    })        
+    }
+
     return (
         <div css={style}>
             <h1>Statistics of your Harmonics</h1> 
@@ -49,7 +98,7 @@ export default function Statistics(){
                     <li css={liStyle}>Name of Artist</li>
                     <li css={liStyle}># of Song</li>
                     <li css={liStyle}># of Album</li>
-                    {artistData}
+                    {artistData ? artistData: ''}
                 </div>
             </ul>    
             <ul style={{listStyle: 'none'}}>
@@ -57,7 +106,7 @@ export default function Statistics(){
                 <div css={genreStyle}>
                     <li css={liStyle}>Genre</li>
                     <li css={liStyle}># of Song</li>
-                    {albumData}
+                    {albumData ? albumData: ''}
                 </div>
             </ul>   
             <ul style={{listStyle: 'none'}}>
@@ -65,14 +114,14 @@ export default function Statistics(){
                 <div css={genreStyle}>
                     <li css={liStyle}>Genre</li>
                     <li css={liStyle}># of Song</li>
-                    {genreData}
+                    {genreData ? genreData: ''}
                 </div>
             </ul> 
             <ul>
                 <h4>Aggregate data</h4>
-                <li>Total number of songs in Harmonics: {data.statics.totalNumberOfSong}</li>
-                <li>Total number of artists in Harmonics: {data.statics.totalNumberOfArtist}</li>
-                <li>Total number of albums in Harmonics: {data.statics.numOfAlbums}</li>
+                <li>Total number of songs in Harmonics: {statstics ? statstics.totalNumberOfSong: ''}</li>
+                <li>Total number of artists in Harmonics: {statstics ? statstics.totalNumberOfArtist: ''}</li>
+                <li>Total number of albums in Harmonics: {statstics ? statstics.numOfAlbums: ''}</li>
             </ul>
         </div>
     )
