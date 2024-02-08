@@ -22,20 +22,16 @@ interface Prop {
     Genre: string;
     Artist: string
   }
-// type states = {
-//     id : string;
-// }
+
 
 export default function EachSong(props: Prop){
     const Dispatch = useDispatch();
-    // const state: states = {
-    //     id: props.id
-    // }
+
 
     return (
         <section css={style}>
             <h3>{props.Title}</h3>
-            <p css={{background: 'blue', borderRadius: '0.8rem', padding: '0.2rem 2rem'}}>By artist</p>
+            <p css={{background: 'blue', borderRadius: '0.8rem', padding: '0.2rem 2rem'}}>By {props.Artist}</p>
             <div>
               <div>Album: {props.Album}</div>
                 <p>{props.Genre}</p>  
