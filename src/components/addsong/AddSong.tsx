@@ -17,6 +17,11 @@ const divStyle = css({
     flexDirection: 'column',
     fontWeight: '600'
 })
+const messageStyle = css({
+    paddingBlock: '0',
+    marginBlock: '0',
+    color:'rgb(241, 130, 75)'
+})
 
 const Button = styled.button`
   font-size: 1rem;padding:.5rem 1rem; margin-top: 1rem; border-radius: 0.5rem;
@@ -33,7 +38,7 @@ export default function AddSong(){
         Album: '',
         Genre: ''
     }); 
-    const [message, setMessage] = useState('Add');
+    const [message, setMessage] = useState('Add your song');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
@@ -55,7 +60,7 @@ export default function AddSong(){
             <h2>
                 Here you can add your songs
             </h2>
-             <h4>{message}</h4>
+             <h4 css={messageStyle}>{message}</h4>
             <form action="" css={formStyle} onSubmit={handleSubmit}>
             <div css={divStyle}>
                 <label htmlFor="title" >Title</label>
