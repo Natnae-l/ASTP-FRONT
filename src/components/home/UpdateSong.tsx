@@ -24,8 +24,14 @@ const messageStyle = css({
     color:'rgb(241, 130, 75)'
 })
 
+const inputStyle = css({
+    padding: '5px 2px',
+    border: '1px solid black',
+    borderRadius: ".35rem",
+    fontFamily: 'Poppins, sanserif'
+})
 const Button = styled.button`
-  font-size: 1rem;padding:.5rem 1rem; margin-top: 1rem; border-radius: 0.5rem;
+  font-size: 1rem;padding:.5rem 1rem; margin-top: 1rem; border-radius: 0.5rem;background-color: white;color: black;font-weight: 600;
 `
 interface addSong {
     Title: string, Album: string, Genre: string, Artist: string, id: string
@@ -88,19 +94,19 @@ export default function UpdateSong(){
             <form action="" css={formStyle} onSubmit={handleSubmit}>
             <div css={divStyle}>
                 <label htmlFor="title" >Title</label>
-                <input type="text" id="Title" defaultValue={thisSong[0].Title} onChange={handleChange} required/>
+                <input type="text" id="Title" defaultValue={thisSong[0].Title} css={inputStyle} onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
                 <label htmlFor="artist">Artist:</label>
-                <input type="text" id="Artist" defaultValue={thisSong[0].Artist} onChange={handleChange} required/>
+                <input type="text" id="Artist" defaultValue={thisSong[0].Artist} css={inputStyle} onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
                 <label htmlFor="album">Album:</label>
-                <input type="text" id="Album" defaultValue={thisSong[0].Album} onChange={handleChange} required />
+                <input type="text" id="Album" defaultValue={thisSong[0].Album} css={inputStyle} onChange={handleChange} required />
             </div>
             <div css={divStyle}>
                 <label htmlFor="genre">Genre</label>
-                <input type="text" id="Genre" defaultValue={thisSong[0].Genre} onChange={handleChange} required/>
+                <input type="text" id="Genre" defaultValue={thisSong[0].Genre} css={inputStyle} onChange={handleChange} required/>
             </div>
             <Button>Update</Button>
         </form>
