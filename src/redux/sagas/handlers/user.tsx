@@ -5,6 +5,8 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 export function* handleGetSong(action: PayloadAction<object>): any {
   try {
+    console.log(action);
+    
     const response: any = yield call(requestGetUser);
     yield put(setUser({...response}));
   } catch (error) {
@@ -30,7 +32,9 @@ export function* handleDeleteSong(action: PayloadAction<{id: string}>): any {
 
   export function* handleAddSong(action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string}>): any {
     try {
-        const response: any = yield call(requestAddSong, action.payload);
+      // console.log(action);
+      
+        yield call(requestAddSong, action.payload);
 
         const res: any = yield call(requestGetUser);
         // const { data } = res;
@@ -49,7 +53,6 @@ export function* handleDeleteSong(action: PayloadAction<{id: string}>): any {
              
         const res: any = yield call(requestGetUser);
 
-        const { data } = res;
         console.log(res)
         return yield put(setUser({ ...res}));
     } catch (error) {

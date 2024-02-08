@@ -22,15 +22,15 @@ interface Prop {
     Genre: string;
     Artist: string
   }
-type states = {
-    id : string;
-}
+// type states = {
+//     id : string;
+// }
 
 export default function EachSong(props: Prop){
     const Dispatch = useDispatch();
-    const state: states = {
-        id: props.id
-    }
+    // const state: states = {
+    //     id: props.id
+    // }
 
     return (
         <section css={style}>

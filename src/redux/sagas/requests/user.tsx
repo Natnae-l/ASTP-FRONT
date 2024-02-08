@@ -53,6 +53,9 @@ export function requestdeleteSong(id: string) {
   }
 
 interface addSong {
+  Title: string, Album: string, Genre: string, Artist: String
+}
+interface updateSong {
   Title: string, Album: string, Genre: string, Artist: String, id: string
 }
 export async function requestAddSong(data: addSong) {
@@ -67,7 +70,7 @@ export async function requestAddSong(data: addSong) {
     console.log(error); 
   }
 }
-export async function requestUpdateSong(data: addSong) {
+export async function requestUpdateSong(data: updateSong) {
   try {
     console.log(data); 
     let res = await axios.put(`http://localhost:3001/song?id=${data.id}`, data);
