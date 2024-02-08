@@ -18,6 +18,11 @@ const divStyle = css({
     flexDirection: 'column',
     fontWeight: '600'
 })
+const messageStyle = css({
+    paddingBlock: '0',
+    marginBlock: '0',
+    color:'rgb(241, 130, 75)'
+})
 
 const Button = styled.button`
   font-size: 1rem;padding:.5rem 1rem; margin-top: 1rem; border-radius: 0.5rem;
@@ -37,6 +42,9 @@ interface addSong {
     }
 }
 export default function UpdateSong(){
+    const [message, setMessage] = useState('Update this song');
+
+
     const location = useLocation();
     const userId = location.state.id;
     console.log(userId);
@@ -69,13 +77,14 @@ export default function UpdateSong(){
         
 
         dispatch(updateSong(data))
-        
+        setMessage('your song is updated!')
     };
     return (
         <div css={style}>
             <h2>
                 update your selected song
             </h2>
+            <h4 css={messageStyle}>{message}</h4>
             <form action="" css={formStyle} onSubmit={handleSubmit}>
             <div css={divStyle}>
                 <label htmlFor="title" >Title</label>
