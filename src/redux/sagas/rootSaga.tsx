@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest } from "redux-saga/effects";
+import {takeLatest } from "redux-saga/effects";
 import { handleGetSong, handleDeleteSong, handleAddSong, handleUpdateSong } from "./handlers/user";
 import { getUser, deleteSong, addSong, updateSong } from "../ducks/songSlice";
 

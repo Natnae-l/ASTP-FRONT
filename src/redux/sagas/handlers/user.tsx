@@ -41,7 +41,7 @@ export function* handleDeleteSong(action: PayloadAction<{id: string}>): any {
     }
   }
 
-  export function* handleUpdateSong(action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string}>): any {
+  export function* handleUpdateSong(action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string, id: string}>): any {
     try {
         const response: any = yield call(requestUpdateSong, action.payload); 
         console.log(response);
@@ -49,8 +49,8 @@ export function* handleDeleteSong(action: PayloadAction<{id: string}>): any {
              
         const res: any = yield call(requestGetUser);
 
-        // const { data } = res;
-        // console.log(res)
+        const { data } = res;
+        console.log(res)
         return yield put(setUser({ ...res}));
     } catch (error) {
       console.log(error);

@@ -69,7 +69,7 @@ export default function AddSong(){
                 <label htmlFor="title">Genre</label>
                 <input type="text" id="title" required/>
             </div>
-            <Button>ADD SONG</Button>
+            <Button>Add Song</Button>
         </form>
         </div>
         

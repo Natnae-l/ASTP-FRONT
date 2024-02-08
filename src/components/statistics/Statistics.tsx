@@ -59,7 +59,7 @@ export default function Statistics(){
     useEffect(() => {
         dispatch(getUser())
     }, [])
-    const statstics: stat = useSelector((state: user) => {
+    const statstics = useSelector((state: user) => {
         return state.user.statistics
     })
     console.log(statstics);
@@ -68,7 +68,7 @@ export default function Statistics(){
     if (statstics){
      artistData = statstics.numberOfSongAndAlbumInArtist.map(data => {
         return <Artist
-                    artist={data.artist}
+                    artist={data.artist} 
                     song={data.song}
                     album={data.album}
                     style={liStyle}

@@ -8,7 +8,28 @@ const style = css({
     display:'flex', alignItems: 'center', gap:'20px', flexWrap: 'wrap', width: '100% !important', overflowY:'scroll'
 })
 
-
+type stat = {
+    totalNumberOfSong: number
+    numberOfSongAndAlbumInArtist: [
+        {
+            artist: string
+            song: number
+            album: number
+        }
+    ]
+    numberOfSongInEveryGenre: [{
+        song: number
+        genre: string
+    }]
+    totalNumberOfArtist: number
+    numOfAlbums: number
+    numOfSongInAlbum: [
+        {
+            album: string
+            song: number
+        }
+    ]
+}
 interface user {
     user: {
         song: [{
@@ -19,6 +40,7 @@ interface user {
             Artist: string
         }]
     }
+    statistics: stat
 }
 export default function Song(){
 
@@ -29,6 +51,8 @@ export default function Song(){
     const user = useSelector((state: user) => {
         return state.user
     })
+    console.log(user);
+    
     const values = user?.song?.map(item => (
         <EachSong 
             Title={item.Title}

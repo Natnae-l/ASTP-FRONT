@@ -49,7 +49,7 @@ export function requestdeleteSong(id: string) {
    return axios.request({
       method: "delete",
       params: {id: id},
-      url: "http://localhost:3001/song"})    
+      url: "https://astp-backend.onrender.com/song"})    
   }
 
 interface addSong {
@@ -70,14 +70,9 @@ export async function requestAddSong(data: addSong) {
 export async function requestUpdateSong(data: addSong) {
   try {
     console.log(data); 
-    let res = await fetch(`http://localhost:3001/song?id=${data.id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    res = await res.json()
+    let res = await axios.put(`http://localhost:3001/song?id=${data.id}`, data);
+    console.log(JSON.stringify(data));
+    
     return res
     } catch (error) {
       console.log(error); 

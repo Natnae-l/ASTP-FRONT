@@ -8,7 +8,7 @@ const userSlice = createSlice({
     getUser() {},
     deleteSong(state, action: PayloadAction<{id: string}>){},
     addSong(state, action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string}>){},
-    updateSong(state, action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string}>){},
+    updateSong(state, action: PayloadAction<{Title: string, Album: string, Genre: string, Artist: string, id: string}>){},
     setUser(state, action: PayloadAction<object>) {
       const userData = action.payload;
       // state = userData;
