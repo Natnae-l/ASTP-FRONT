@@ -104,7 +104,7 @@ export default function Statistics(){
             <ul style={{listStyle: 'none'}}>
                 <h3>This shows the stats of every album in Harmonics</h3>
                 <div css={genreStyle}>
-                    <li css={liStyle}>Genre</li>
+                    <li css={liStyle}>Album</li>
                     <li css={liStyle}># of Song</li>
                     {albumData ? albumData: ''}
                 </div>
