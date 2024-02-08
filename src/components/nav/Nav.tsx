@@ -1,6 +1,8 @@
 import { css } from "@emotion/react";
 import {NavLink } from "react-router-dom";
-// import headphone from "../../assets/headphones.png"
+import headphone from "../../assets/headphones.png"
+import statImage from "../../assets/stat.png"
+import addSongImg from "../../assets/add.png"
 
 
 const color: string = 'rgb(241, 130, 75)'
@@ -9,7 +11,10 @@ const listStyle = css({
     fontFamily: 'Poppins',
     fontSize: '1.2rem',
     textDecoration: 'none',
-    fontWeight: '600'
+    fontWeight: '600',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px'
 })
 const ulStyle = css({
     listStyle: 'none',
@@ -25,11 +30,15 @@ const navStyle = css({
     width: '16%'
 })
 
+
+
 export default function Nav() {
+    
     return (
      
                 <nav className="" css={navStyle}>             
                     <ul className="" css={ulStyle}>
+                      
                     <NavLink
                         to="/"
                         css={listStyle}
@@ -40,7 +49,7 @@ export default function Nav() {
                           };
                         }}
                           >
-                        Home
+                        <img src={headphone} alt="" style={{width: '20px'}} />Home
                     </NavLink>
                     <NavLink
                         to="/addsong"
@@ -51,8 +60,7 @@ export default function Nav() {
                             viewTransitionName: isTransitioning ? "slide" : "",
                           };
                         }}
-                          >
-                        Add Song
+                          > <img src={addSongImg} alt="" style={{width: '20px'}} /> Add song
                     </NavLink>
                     <NavLink
                         to="/statistics"
@@ -64,7 +72,7 @@ export default function Nav() {
                           };
                         }}
                           >
-                        Statistics
+                        <img src={statImage} alt="" style={{width: '20px'}} /> Statistics
                     </NavLink>
                     </ul>
                  </nav>
