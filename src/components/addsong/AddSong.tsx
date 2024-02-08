@@ -33,7 +33,8 @@ export default function AddSong(){
         Album: '',
         Genre: ''
     });
-    let message: string = '';
+    const [message, setMessage] = useState('');
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
         setFormData({ ...formData, [id]: value });
@@ -46,7 +47,7 @@ export default function AddSong(){
         console.log(data);
         
         dispatch(addSong(data))
-        message = `<h4>Your song is added</h4>`
+        setMessage('Your song is added')
         
     }
     return (
@@ -54,7 +55,7 @@ export default function AddSong(){
             <h2>
                 Here you can add your songs
             </h2>
-            {message}
+             <h4>{message}</h4>
             <form action="" css={formStyle} onSubmit={handleSubmit}>
             <div css={divStyle}>
                 <label htmlFor="title" >Title</label>
