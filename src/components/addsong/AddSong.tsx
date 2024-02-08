@@ -52,8 +52,7 @@ export default function AddSong(){
         console.log(data);
         
         dispatch(addSong(data))
-        setMessage('Your song is added')
-        
+        setMessage('Your song is added')        
     }
     return (
         <div css={style}>
