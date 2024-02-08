@@ -5,7 +5,7 @@ import { getUser} from "../../redux/ducks/songSlice";
 import { useEffect } from "react";
 
 const style = css({
-    display:'flex', alignItems: 'center', gap:'20px', flexWrap: 'wrap', width: '100% !important', overflowY:'scroll'
+    display:'flex', alignItems: 'center', gap:'20px', flexWrap: 'wrap', width: '100% !important', overflowY:'scroll', paddingBlockEnd: '4rem'
 })
 
 type stat = {

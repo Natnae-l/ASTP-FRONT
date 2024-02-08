@@ -6,7 +6,7 @@ import { getUser } from "../../redux/ducks/songSlice"
 import { useEffect } from "react"
 
 const style = css({
-    paddingInline: '1rem', fontFamily:'Poppins, sanserif', width: '80%', overflowY: 'scroll'
+    paddingInline: '1rem', fontFamily:'Poppins, sanserif', width: '80%', overflowY: 'scroll', paddingBlockEnd: '4rem'
 })
 const liStyle = css({
     padding: '.5rem 1rem', border: '1px solid black' , borderRadius:'.3rem', fontWeight: '600'
