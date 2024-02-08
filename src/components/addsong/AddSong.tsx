@@ -32,8 +32,8 @@ export default function AddSong(){
         Artist: '',
         Album: '',
         Genre: ''
-    });
-    const [message, setMessage] = useState('');
+    }); 
+    const [message, setMessage] = useState('Add');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
