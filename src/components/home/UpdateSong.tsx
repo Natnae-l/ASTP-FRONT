@@ -3,6 +3,7 @@ import { css } from "@emotion/react"
 import { useDispatch, useSelector } from "react-redux"
 import {addSong, updateSong } from "../../redux/ducks/songSlice"
 import styled from "styled-components"
+import { useState } from 'react';
 
 const formStyle = css({
     padding: '1rem',
@@ -38,41 +39,38 @@ interface addSong {
 export default function UpdateSong(){
     const location = useLocation();
     const userId = location.state.id;
-    // console.log(userId);
-    
+    console.log(userId);
+    const dispatch = useDispatch();
 
     const song = useSelector((state: user) => {
         return state.user
     })
-
-    const thisSong = song.song.filter(item => item._id == userId)
-    // console.log(thisSong);
-    
-
-    
-    const dispatch = useDispatch();
-        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        // 👇️ prevent page refresh
-        event.preventDefault();
         
-        const [Title, Artist, Album, Genre] = [
-            event.currentTarget.elements[0].value,
-            event.currentTarget.elements[1].value,
-            event.currentTarget.elements[2].value,
-            event.currentTarget.elements[3].value
-        ]
-        const data: addSong = {
-            Title: Title,
-            Artist: Artist,
-            Album: Album,
-            Genre: Genre,
-            id: thisSong[0]._id
-        }
+    const thisSong = song.song.filter(item => item._id == userId)
+    const [formData, setFormData] = useState({
+        Title: thisSong[0].Title,
+        Artist: thisSong[0].Artist,
+        Album: thisSong[0].Album,
+        Genre: thisSong[0].Genre
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target;
+        console.log(formData);
+        
+        setFormData({ ...formData, [id]: value });
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        const data: addSong = {...formData, id:thisSong[0]._id}; 
+        console.log(data);
+        
+
         dispatch(updateSong(data))
-        for (let i = 0; i< 4; i++){
-            event.currentTarget.elements[i].value = ''
-        }
-    }
+        
+    };
     return (
         <div css={style}>
             <h2>
@@ -81,19 +79,19 @@ export default function UpdateSong(){
             <form action="" css={formStyle} onSubmit={handleSubmit}>
             <div css={divStyle}>
                 <label htmlFor="title" >Title</label>
-                <input type="text" id="title" defaultValue={thisSong[0].Title} required/>
+                <input type="text" id="Title" defaultValue={thisSong[0].Title} onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
                 <label htmlFor="artist">Artist:</label>
-                <input type="text" id="artist" defaultValue={thisSong[0].Artist} required/>
+                <input type="text" id="Artist" defaultValue={thisSong[0].Artist} onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
                 <label htmlFor="album">Album:</label>
-                <input type="text" id="album" defaultValue={thisSong[0].Album} required />
+                <input type="text" id="Album" defaultValue={thisSong[0].Album} onChange={handleChange} required />
             </div>
             <div css={divStyle}>
                 <label htmlFor="genre">Genre</label>
-                <input type="text" id="genre" defaultValue={thisSong[0].Genre} required/>
+                <input type="text" id="Genre" defaultValue={thisSong[0].Genre} onChange={handleChange} required/>
             </div>
             <Button>Update</Button>
         </form>

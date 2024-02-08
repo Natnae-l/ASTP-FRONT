@@ -2,6 +2,7 @@ import { css } from "@emotion/react"
 import { useDispatch } from "react-redux"
 import { addSong } from "../../redux/ducks/songSlice"
 import styled from "styled-components"
+import { useState } from "react"
 
 const formStyle = css({
     padding: '1rem',
@@ -26,26 +27,26 @@ interface addSong {
 
 export default function AddSong(){
     const dispatch = useDispatch();
-        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        // 👇️ prevent page refresh
-        event.preventDefault();
+    const [formData, setFormData] = useState({
+        Title: '',
+        Artist: '',
+        Album: '',
+        Genre: ''
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target;
+        setFormData({ ...formData, [id]: value });
+    }
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
         
-        const [Title, Artist, Album, Genre] = [
-            event.currentTarget.elements[0].value,
-            event.currentTarget.elements[1].value,
-            event.currentTarget.elements[2].value,
-            event.currentTarget.elements[3].value
-        ]
-        const data: addSong = {
-            Title: Title,
-            Artist: Artist,
-            Album: Album,
-            Genre: Genre
-        }
+        const data: addSong = formData; 
+        console.log(data);
+        
         dispatch(addSong(data))
-        for (let i = 0; i< 4; i++){
-            event.currentTarget.elements[i].value = ''
-        }
+        
     }
     return (
         <div css={style}>
@@ -55,19 +56,19 @@ export default function AddSong(){
             <form action="" css={formStyle} onSubmit={handleSubmit}>
             <div css={divStyle}>
                 <label htmlFor="title" >Title</label>
-                <input type="text" id="title" required/>
+                <input type="text" id="Title"  onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
                 <label htmlFor="title">Artist:</label>
-                <input type="text" id="title" required/>
+                <input type="text" id="Artist"  onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
                 <label htmlFor="title">Album:</label>
-                <input type="text" id="title" required />
+                <input type="text" id="Album"  onChange={handleChange} required />
             </div>
             <div css={divStyle}>
                 <label htmlFor="title">Genre</label>
-                <input type="text" id="title" required/>
+                <input type="text" id="Genre" onChange={handleChange} required/>
             </div>
             <Button>Add Song</Button>
         </form>

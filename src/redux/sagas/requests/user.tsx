@@ -21,7 +21,7 @@ export async function requestGetUser() {
   };
 
   const {data: song} = await axios.get<GetUsersResponse>(
-    'https://astp-backend.onrender.com/song',
+    'http://localhost:3001/song',
     {
       headers: {
         Accept: 'application/json',
@@ -29,7 +29,7 @@ export async function requestGetUser() {
     },
   );
   const {data: stat} = await axios.get<GetUsersResponse>(
-    'https://astp-backend.onrender.com/statistics',
+    'http://localhost:3001/statistics',
     {
       headers: {
         Accept: 'application/json',
@@ -49,7 +49,7 @@ export function requestdeleteSong(id: string) {
    return axios.request({
       method: "delete",
       params: {id: id},
-      url: "https://astp-backend.onrender.com/song"})    
+      url: "http://localhost:3001/song"})    
   }
 
 interface addSong {
@@ -58,7 +58,7 @@ interface addSong {
 export async function requestAddSong(data: addSong) {
   try {
     console.log(data); 
-    return await axios.post('https://astp-backend.onrender.com/song', {...data}, {
+    return await axios.post('http://localhost:3001/song', {...data}, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
@@ -70,8 +70,8 @@ export async function requestAddSong(data: addSong) {
 export async function requestUpdateSong(data: addSong) {
   try {
     console.log(data); 
-    let res = await axios.put(`https://astp-backend.onrender.com/song?id=${data.id}`, data);
-        
+    let res = await axios.put(`http://localhost:3001/song?id=${data.id}`, data);
+
     return res
     } catch (error) {
       console.log(error); 
