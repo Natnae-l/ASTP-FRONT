@@ -71,11 +71,11 @@ export default function AddSong(){
                 <input type="text" css={inputStyle} id="Title"  onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
-                <label htmlFor="title">Artist:</label>
+                <label htmlFor="title">Artist</label>
                 <input type="text" css={inputStyle} id="Artist"  onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
-                <label htmlFor="title">Album:</label>
+                <label htmlFor="title">Album</label>
                 <input type="text" css={inputStyle} id="Album"  onChange={handleChange} required />
             </div>
             <div css={divStyle}>

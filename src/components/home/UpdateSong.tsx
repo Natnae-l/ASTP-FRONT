@@ -97,11 +97,11 @@ export default function UpdateSong(){
                 <input type="text" id="Title" defaultValue={thisSong[0].Title} css={inputStyle} onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
-                <label htmlFor="artist">Artist:</label>
+                <label htmlFor="artist">Artist</label>
                 <input type="text" id="Artist" defaultValue={thisSong[0].Artist} css={inputStyle} onChange={handleChange} required/>
             </div>
             <div css={divStyle}>
-                <label htmlFor="album">Album:</label>
+                <label htmlFor="album">Album</label>
                 <input type="text" id="Album" defaultValue={thisSong[0].Album} css={inputStyle} onChange={handleChange} required />
             </div>
             <div css={divStyle}>
