@@ -34,7 +34,7 @@ export default function EachSong(props: Prop){
             <p css={{background: 'blue', borderRadius: '0.8rem', padding: '0.2rem 2rem'}}>By {props.Artist}</p>
             <div>
               <div>Album: {props.Album}</div>
-                <p>{props.Genre}</p>  
+                <p>Genre: {props.Genre}</p>  
             </div>
             <div css={{display: 'flex', justifyContent: 'space-between'}}>
                 <img src={deleter} alt="" id={props.id} 
