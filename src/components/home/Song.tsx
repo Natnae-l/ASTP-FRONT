@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import EachSong from "./EachSong"
 import { useDispatch, useSelector } from "react-redux";
 import { getUser} from "../../redux/ducks/songSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const style = css({
     display:'flex', alignItems: 'center', gap:'20px', flexWrap: 'wrap', width: '100% !important', overflowY:'scroll', paddingBlockEnd: '4rem'
@@ -42,7 +42,23 @@ interface user {
     }
     statistics: stat
 }
+const searchStyle = css({
+    width:'100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingInlineEnd:'8rem'
+})
+const inputStyle = css({
+    padding: '5px 4px',
+    border: '1.5px solid brown',
+    borderRadius: ".32rem",
+    fontFamily: 'Poppins, sanserif',
+})
 export default function Song(){
+    const [search, setSearch] = useState('');
+    console.log(search);
+    
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -51,9 +67,10 @@ export default function Song(){
     const user = useSelector((state: user) => {
         return state.user
     })
-    console.log(user);
     
-    const values = user?.song?.map(item => (
+    const values = user?.song?.filter(item => {
+        return search.toLowerCase()== '' ? item : item.Genre.toLowerCase().includes(search.toLowerCase())
+    }).map(item => (
         <EachSong 
             Title={item.Title}
             id={item._id}
@@ -64,8 +81,16 @@ export default function Song(){
     ))
     // console.log(user)
     return (
-        <div css={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingInline:'1rem', width:'84%'}}>
+        
+        <div css={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingInline:'1rem', width:'84%'}}> 
             <h1 css={{fontFamily:'poppins'}}>Your songs</h1>
+            <form css={searchStyle}>
+                <input type="text" name="" id="filter" css={inputStyle} 
+                onChange={(e => {
+                    setSearch(e.target.value)
+                })} 
+                placeholder="filter by genre"/>
+            </form>
             <div css={style}> 
                 {values}
             </div>              
