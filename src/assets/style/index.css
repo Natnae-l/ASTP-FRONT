@@ -1,5 +1,5 @@
 .card {
-    width: 300px;
+    width: 250px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -8,7 +8,7 @@
   }
   .card .loader {
     border: 6px solid #f3f3f3; /* Light grey */
-    border-top: 6px solid #4c75cf; /* Blue */
+    border-top: 6px solid #3550e7; /* Blue */
     border-radius: 50%;
     width: 30px;
     height: 30px;

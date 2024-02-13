@@ -81,7 +81,7 @@ export default function Song(){
         />
     ))
 
-    let skeleton = [0, 1, 2, 3]
+    let skeleton = [0, 1, 2]
     // console.log(user)
     return (
         <>
