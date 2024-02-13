@@ -1,0 +1,21 @@
+.card {
+    width: 300px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+  }
+  .card .loader {
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #4c75cf; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1.2s linear infinite;
+    margin: 0 auto 20px;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

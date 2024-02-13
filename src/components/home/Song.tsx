@@ -3,6 +3,7 @@ import EachSong from "./EachSong"
 import { useDispatch, useSelector } from "react-redux";
 import { getUser} from "../../redux/ducks/songSlice";
 import { useEffect, useState } from "react";
+import IsLoading from "../IsLoading";
 
 const style = css({
     display:'flex', alignItems: 'center', gap:'20px', flexWrap: 'wrap', width: '100% !important', overflowY:'scroll', paddingBlockEnd: '4rem'
@@ -79,21 +80,27 @@ export default function Song(){
             Genre={item.Genre}
         />
     ))
+
+    let skeleton = [0, 1, 2, 3]
     // console.log(user)
     return (
+        <>
+            <div css={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingInline:'1rem', width:'84%'}}> 
+            
+                <h1 css={{fontFamily:'poppins'}}>Your songs</h1>
+                <form css={searchStyle}>
+                    <input type="text" name="" id="filter" css={inputStyle} 
+                    onChange={(e => {
+                        setSearch(e.target.value)
+                    })} 
+                    placeholder="filter by genre"/>
+                </form>
+                <div css={style}> 
+                   {!user?.song?.length && skeleton.map(item => < IsLoading key={item} />) }
+                 {values}
+                </div>              
+            </div>
+        </>
         
-        <div css={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingInline:'1rem', width:'84%'}}> 
-            <h1 css={{fontFamily:'poppins'}}>Your songs</h1>
-            <form css={searchStyle}>
-                <input type="text" name="" id="filter" css={inputStyle} 
-                onChange={(e => {
-                    setSearch(e.target.value)
-                })} 
-                placeholder="filter by genre"/>
-            </form>
-            <div css={style}> 
-                {values}
-            </div>              
-        </div>
     )
 }
